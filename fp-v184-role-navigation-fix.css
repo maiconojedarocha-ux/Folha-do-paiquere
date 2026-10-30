@@ -1,0 +1,14 @@
+/* v184: role-restricted navigation must remain hidden despite .fp-nav-item { display:flex }. */
+#student-nav .fp-nav-item[hidden],
+#student-nav .fp-nav-item.hidden,
+#student-nav .fp-nav-divider[hidden],
+#student-nav .fp-nav-divider.hidden,
+.fp-editor-sidebar .fp-nav-item[hidden],
+.fp-editor-sidebar .fp-nav-item.hidden,
+.fp-editor-sidebar .editor-only-shortcut[hidden],
+.fp-editor-sidebar .editor-only-shortcut.hidden,
+.fp-editor-sidebar .master-only-shortcut[hidden],
+.fp-editor-sidebar .master-only-shortcut.hidden {
+  display: none !important;
+}
+

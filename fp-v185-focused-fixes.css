@@ -1,0 +1,179 @@
+/* Folha do Paiquerê v185 — ajustes focados solicitados após TestSprite 02. */
+
+/* Sobre: a imagem fica limitada à faixa de identidade. O wallpaper é filho de
+   .fp-community-identity-zone (não do cartão diretamente); esta regra corrige o
+   seletor que não atingia o elemento real no HTML da comunidade. */
+.about-page .fp-community-profile-card[data-profile-background] {
+  background-image: none !important;
+}
+.about-page .fp-community-identity-zone {
+  position: relative !important;
+  isolation: isolate !important;
+  overflow: hidden !important;
+}
+.about-page .fp-community-identity-zone > .fp-community-card-wallpaper {
+  display: block !important;
+  position: absolute !important;
+  top: 0 !important;
+  right: 0 !important;
+  bottom: auto !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: clamp(5.6rem, 7vw, 6.4rem) !important;
+  min-height: 5.6rem !important;
+  max-height: 6.4rem !important;
+  pointer-events: none !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  z-index: 0 !important;
+}
+@media (max-width: 767px) {
+  .about-page .fp-community-identity-zone > .fp-community-card-wallpaper {
+    height: clamp(5.5rem, 20vw, 6.1rem) !important;
+    min-height: 5.5rem !important;
+    max-height: 6.1rem !important;
+  }
+}
+
+/* Perfil privado: a conquista usa cartões na mesma proporção do perfil público,
+   com imagem 16:9 e conteúdo em coluna para não distorcer a organização. */
+body.fp-student-shell .profile-achievements-list {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+  align-items: stretch;
+  gap: .7rem !important;
+}
+body.fp-student-shell .profile-achievements-list .fp-profile-achievement-card {
+  display: flex;
+  min-width: 0;
+  height: 100%;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--fp-border, #d8e2ee);
+  border-radius: .9rem;
+  background: var(--fp-surface, #fff);
+  box-shadow: 0 5px 16px rgba(18, 42, 68, .07);
+}
+body.fp-student-shell .profile-achievements-list .fp-profile-achievement-image {
+  display: grid;
+  flex: 0 0 auto;
+  width: 100%;
+  min-height: 0;
+  max-height: 8.4rem;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  place-items: center;
+  background: var(--fp-surface-soft, #edf3fa);
+}
+body.fp-student-shell .profile-achievements-list .fp-profile-achievement-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  max-height: none;
+  object-fit: cover;
+}
+body.fp-student-shell .fp-profile-achievement-placeholder {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  place-items: center;
+  font-size: 2rem;
+}
+body.fp-student-shell .profile-achievements-list .fp-profile-achievement-body {
+  display: flex;
+  flex: 1 1 auto;
+  min-width: 0;
+  flex-direction: column;
+  gap: .35rem;
+  padding: .72rem;
+  overflow-wrap: anywhere;
+}
+body.fp-student-shell .profile-achievements-list .fp-profile-achievement-body > p:first-child {
+  margin: 0;
+  color: var(--fp-accent-strong, #245c91);
+  font-size: .65rem;
+  font-weight: 900;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+body.fp-student-shell .profile-achievements-list .fp-profile-achievement-body h3 {
+  margin: 0;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+body.fp-student-shell .profile-achievements-list .fp-profile-achievement-body button {
+  align-self: flex-start;
+  min-height: 2.4rem;
+  margin-top: auto;
+  padding: .5rem .7rem;
+  border: 1px solid var(--fp-border, #d8e2ee);
+  border-radius: .65rem;
+  background: var(--fp-surface-soft, #edf3fa);
+  color: var(--fp-accent-strong, #245c91);
+  font-weight: 800;
+  cursor: pointer;
+}
+body.fp-student-shell .profile-achievements-list .fp-profile-achievement-body button:hover {
+  background: var(--fp-accent-soft, #e5effb);
+}
+.dark body.fp-student-shell .profile-achievements-list .fp-profile-achievement-card {
+  border-color: #30445f;
+  background: #15253c;
+}
+.dark body.fp-student-shell .profile-achievements-list .fp-profile-achievement-image,
+.dark body.fp-student-shell .profile-achievements-list .fp-profile-achievement-body button {
+  border-color: #30445f;
+  background: #1b304b;
+  color: #c8e0fb;
+}
+
+/* Editor de texto: foco visível, leitura confortável e controles de toque consistentes. */
+.editor-rich-text {
+  min-width: 0;
+  min-height: 8rem;
+  padding: .85rem;
+  line-height: 1.65;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  word-break: normal;
+  caret-color: currentColor;
+}
+.editor-rich-text:focus-visible {
+  outline: 3px solid rgba(46, 125, 50, .32) !important;
+  outline-offset: 2px;
+  border-color: #2e7d32 !important;
+}
+.editor-rich-text a {
+  color: #2878d0;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  overflow-wrap: anywhere;
+}
+.editor-rich-text .editor-rich-line { min-height: 1.45em; }
+.editor-inline-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .3rem;
+}
+.editor-inline-toolbar select,
+.editor-inline-toolbar button {
+  min-height: 2.35rem;
+}
+.editor-inline-toolbar select { max-width: 100%; }
+.editor-inline-toolbar button:focus-visible,
+.editor-inline-toolbar select:focus-visible {
+  outline: 3px solid rgba(46, 125, 50, .34) !important;
+  outline-offset: 2px;
+}
+@media (max-width: 640px) {
+  .editor-rich-text { min-height: 9rem; padding: .75rem; font-size: 16px; }
+  .editor-inline-toolbar { gap: .26rem; }
+  .editor-inline-toolbar select { flex: 1 1 8.2rem; min-width: 0; }
+  .editor-inline-toolbar button { flex: 0 0 2.5rem; min-width: 2.5rem; min-height: 2.5rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .profile-achievement-card, .editor-inline-toolbar button { transition: none !important; }
+}
